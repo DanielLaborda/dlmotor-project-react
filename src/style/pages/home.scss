@@ -1,0 +1,44 @@
+.home {
+    display: grid;
+    //grid-template-columns: minmax(20px, 250px) [s] 1fr [e] minmax(20px, 250px);
+    max-width: 100vw;
+    height: calc(100vh - 75px);
+    background-image: url('../../static/images/background3.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+    justify-content: center;
+    align-items: center;
+
+    &-cars,
+    &-categories,
+    &-racing {
+        background-color: rgba($color: #ccc, $alpha: 0.78);
+        padding: 2.5%;
+        margin: 5%;
+        transform: translateX(-100%);
+    }
+    &-categories,
+    &-racing {
+        display: none;
+    }
+
+    &__video iframe{
+        
+        width:853px;
+        height:480px;
+    }
+}
+@media (max-width: 648px) {
+    .home {
+        background-repeat:repeat-y;
+        
+    }
+}
+@media (max-width: 853px) {
+    .home__video iframe{
+        width: 100vw;
+        
+    }
+}
