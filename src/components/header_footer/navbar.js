@@ -7,7 +7,7 @@ const Navbar = (props) => {
         <div>
             <div className="logo-side">
             <NavLink exact to="/">
-                <img src='../../../static/images/logo.png' />
+                <img src={require('../../../static/images/logo.png')} />
             </NavLink>
             </div>
             <div className="left-side">
