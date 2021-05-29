@@ -16,7 +16,7 @@ function main() {
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </Provider>,
+    </Provider>
     document.querySelector(".app-wrapper")
   );
 }
