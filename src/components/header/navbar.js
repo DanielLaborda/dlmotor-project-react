@@ -37,16 +37,16 @@ const Navbar = () => {
                         </a>
                     </li>                   
                 </ul>
-                <a onClick={() => history.push('/users')}><i className="far fa-user"/></a>
+                <a onClick={() => history.push('/users')}>user{/*<i className="far fa-user"/>*/}</a>
                     
                 <div className="mobile-menu" onClick={handleClick}>
                     {click ? (
                     <div className="menu-icon">
-                        <i className="fas fa-bars"/>
+                        menu{/* menu<i className="fas fa-bars"/> */}
                     </div>
                     ) : (
                     <div className="menu-icon">
-                        <i className="fas fa-bars"/>
+                        menu{/* <i className="fas fa-bars"/> */}
                     </div>
                     )}
                 </div>
