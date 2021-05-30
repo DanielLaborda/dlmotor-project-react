@@ -5,12 +5,11 @@ import { NavLink } from 'react-router-dom';
 
 class Navbar extends Component {
     render() {
-        const logo = require('../../../static/images/logo.png');
         return(
             <div>
                 <div className="logo-side">
                 <NavLink exact to="/">
-                    <img src={logo} />
+                    <img src={require('../../../static/images/logo.png')} />
                 </NavLink>
                 </div>
                 <div className="left-side">
