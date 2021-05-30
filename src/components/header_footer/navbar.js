@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
+import logo from '../../localImages/logo.png';
 
 class Navbar extends Component {
     render() {
@@ -9,7 +10,7 @@ class Navbar extends Component {
             <div>
                 <div className="logo-side">
                 <NavLink exact to="/">
-                    <img src={require('../../../static/images/logo.png')} />
+                    <img src={logo} />
                 </NavLink>
                 </div>
                 <div className="left-side">
