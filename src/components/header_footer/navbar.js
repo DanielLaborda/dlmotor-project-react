@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 class Navbar extends Component {
     componentDidMount() {
-        document.getElementById("logo").src = '../../localImages/logo.png';
+        document.getElementById("logo").src = require('../../localImages/logo.png');
     }
     render() {
         return(
