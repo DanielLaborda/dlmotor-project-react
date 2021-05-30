@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
+import logo from "../../localImages/logo.png";
 
 class Navbar extends Component {
+    componentDidMount() {
+        document.getElementById("logo").src = logo;
+    }
     render() {
-        const stylelogo = {
-            content: "../../localImages/logo.png"
-        }
         return(
             <div>
                 <div className="logo-side">
                 <NavLink exact to="/">
-                    <img style={stylelogo} />
+                    <img id='logo'/>
                 </NavLink>
                 </div>
                 <div className="left-side">
