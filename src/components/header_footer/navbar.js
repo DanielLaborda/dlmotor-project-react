@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
-import logo from "../../localImages/logo.png";
 
 class Navbar extends Component {
     componentDidMount() {
-        document.getElementById("logo").src = logo;
+        document.getElementById("logo").src = '../../localImages/logo.png';
     }
     render() {
         return(
