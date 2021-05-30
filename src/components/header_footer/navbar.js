@@ -11,14 +11,13 @@ class Navbar extends Component {
             <div>
                 <div className="logo-side">
                 <NavLink exact to="/">
-                    <img id='logo'
+                    <div id='logo'
                     style={{
                         backgroundImage: `url(${logo})`,
                         backgroundPosition:'center',
                         backgroundSize:'cover',
                         width: '150px',
                         height: '100px',
-                        border: 'none'
                     }}
                     />
                 </NavLink>
