@@ -4,7 +4,11 @@
     align-items: center;
     padding: 10px 40px;
 
-    &__logo {
+    a {
+        text-decoration: none;
+    }
+
+    &__logo-side {
         font-size: 26px;
         font-weight: 600;
         display: flex;
@@ -13,13 +17,49 @@
         background-color:#3b4248;
         transform: skewX(-6deg) translate(-10px);
         padding: 0 25px;
-        color: #0fe0f5;
+        
+        &__content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #0fe0f5;
 
-        img {
+        }
+
+        &__img {
             cursor: pointer;
             width: 100px;
         }
     }
+
+    &__left-side {
+        font-size: 18px;
+        font-weight: 600;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        gap: 50px;
+    }
+
+    &__option {
+        color: #3b4248;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        width: 150px;
+        
+        &__text {
+            
+            background-color: transparent;
+        }   
+        &:hover{
+            .navbar__option__text{
+                color: #0fe0f5;
+            }
+        }
+       
+    } 
+
 
     &__options {
         font-size: 18px;
@@ -75,6 +115,7 @@
     }
     
 }
+
 .mobile-option {
     display: none;
 }
@@ -133,3 +174,7 @@
         width: 150px;
     }
 }
+
+
+
+
