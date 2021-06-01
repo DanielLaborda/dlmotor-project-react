@@ -23,7 +23,6 @@ class Navbar extends Component {
         })
     }
     render() {
-        console.log(this.state);
         return(
             <div className='navbar'>
                 <div className="navbar__logo-side">
