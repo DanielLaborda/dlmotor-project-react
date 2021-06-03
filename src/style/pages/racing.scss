@@ -1,0 +1,114 @@
+.racing{
+    background-color: #282c30;
+    color: #ccc;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    &__banner {
+        &__image {
+            width: 100vw;
+            height: 700px;
+        }
+
+        &__sections {
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: 100px 100px 100px;
+            justify-content: center;
+            align-items: center;
+            &__button {
+                cursor: pointer;
+                width: 50px;
+                border-bottom: 5px solid #0fe0f5;
+                border-radius: 20px;
+                &:hover {
+                    border-color: #0dbece;
+                }
+
+            }
+        }
+
+        &__title {
+            font-size: 50px;
+            font-weight: 600;
+            margin:  50px 0;
+        }
+    }
+
+    &__description {
+        font-size: 16px;
+        line-height: 40px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    &__video {
+        margin: 20px 0;
+        iframe {
+            width: 1280px;
+            height: 720px;
+        }
+    }
+
+    &__slogan {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    &__gategories {
+        display: grid;
+        grid-template-columns: 500px 500px;
+        grid-gap: 20px;
+        &__category {
+            &__image{
+                filter: grayscale(1);
+                img{
+                    width: 400px;
+                    height: 240px;
+                }
+            }
+            &__name{
+                font-size: 24px;
+                color: #ccc;
+                padding: 20px;
+                margin-top: -10px;
+                background-color: #282c30;
+            }
+            &:hover {
+                .racing__gategories__category__image {
+                    filter: grayscale(0);
+                }
+                .racing__gategories__category__name {
+                    background-color: #0dbece;
+                    color: #282c30;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+.activeBar {
+    border-color: #f8ba46;
+}
+.activeCategory {
+    background-color: #f8ba46;
+    color: #282c30;
+    font-weight: 600;
+}
+.activeCategoryImg {
+    filter: grayscale(0);
+}
+
+
+/* Mediaqueries */
+@media (max-width: 1280px) {
+    .racing__video iframe{
+        width: 100vw;
+    }
+}
+@media (max-width: 1060px) {
+    .racing__gategories{
+        grid-template-columns: 1fr;
+    }
+}
