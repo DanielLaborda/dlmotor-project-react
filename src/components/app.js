@@ -5,6 +5,7 @@ import Navbar from './header_footer/navbar';
 import Garage from './pages/garage';
 import Home from './pages/home';
 import RacingTeam from './pages/racingTeam';
+import Users from './pages/users';
 
 export default class App extends Component {
   render() {
@@ -18,6 +19,7 @@ export default class App extends Component {
               <Route path='/' exact component={Home}/>
               <Route path='/garage' exact component={Garage}/>
               <Route path='/racingTeam' exact component={RacingTeam}/>
+              <Route path='/login' exact component={Users}/>
             </Switch>
           </div>
         </Router>
