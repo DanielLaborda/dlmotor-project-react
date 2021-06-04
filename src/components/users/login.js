@@ -2,37 +2,32 @@ import React, { Component } from 'react';
 
 import LoginForm from './loginForm';
 
-import { connect} from 'react-redux';
-import * as actions from '../../actions';
-import axios from 'axios';
-
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
+    this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
+    this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
   }
-  onSubmit = (fields) => {
-    console.log(fields.email);
-    // axios.get("http://127.0.0.1:5000/sessions",{
-    //   "email":fields.email,
-    //   "password":fields.password
-    // }, {withCredentials: true}
-    // ).then(response =>
-    //   console.log(response.data)
-    // )
-    // this.props.handleSuccessfulLogin();
-    // this.props.history.push('/account');
+  handleSuccessfulLogin(userType){
+    this.props.handleSuccessfulLogin(userType);
   }
+  handleUnsuccessfulLogin(){
+      this.props.handleUnsuccessfulLogin();
+  }
+  
   render() {
     return (
       <div className='sign-in'>
-          <LoginForm onSubmit={this.onSubmit} className='sign-in__form' />
+          <LoginForm 
+          handleSuccessfulLogin={this.handleSuccessfulLogin}
+          handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
+          className='sign-in__form' />
       </div>
     );
   }
 }
 
-Login = connect(null, actions)(Login);
 
 export default Login;

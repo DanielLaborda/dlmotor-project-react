@@ -20,11 +20,11 @@ class Users extends Component {
     showRegister() {
         this.setState({ show: "register" });
     }
-    handleSuccessfulLogin() {
-        console.log('this.props.handleSuccessfulLogin();');
+    handleSuccessfulLogin(userType) {
+        this.props.handleSuccessfulLogin(userType);
     }
     handleUnsuccessfulLogin() {
-        console.log('this.props.handleUnsuccessfulLogin();');
+        this.props.handleUnsuccessfulLogin();
     }
     render() {
         return (
@@ -34,7 +34,9 @@ class Users extends Component {
                     <li onClick={this.showRegister}>register</li>
                 </ul>
                 {(this.state.show === 'Login') ?
-                    <Login handleSuccessfulLogin={this.handleSuccessfulLogin} handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}/>
+                    <Login 
+                        handleSuccessfulLogin={this.handleSuccessfulLogin} 
+                        handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}/>
                     : 
                     <Register />
                 }
