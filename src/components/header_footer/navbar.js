@@ -11,7 +11,8 @@ class Navbar extends Component {
         this.state = {
             imageLogo: '',
             nameCompany: ''
-        }
+        };
+        this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
     }
     componentDidMount() {
         axios.get("http://127.0.0.1:5000/company/1"
@@ -22,9 +23,13 @@ class Navbar extends Component {
             });
         })
     }
+
+    handleSuccessfulLogout() {
+        this.props.handleSuccessfulLogout();
+    }
+
     render() {
-        const { userTypeLogged } = this.props;
-        console.log(userTypeLogged);
+        const { userTypeLogged, loggedInStatus } = this.props;
         return(
             <div className='navbar'>
                 <div className="navbar__logo-side">
@@ -35,14 +40,20 @@ class Navbar extends Component {
                 </div>
                 <div className="navbar__left-side">
                     {   
-                        (userTypeLogged == "Administrator")?                    
+                        (userTypeLogged == "Administrator")?
                             <div className="nav-link-wrapper">
                                 <NavLink exact to="/categories" className='navbar__option'>
                                     <div className='navbar__option__text' >Dashboard</div>
                                 </NavLink>
                             </div>
-                            
-                        :''
+                        :(userTypeLogged == "Customer")?
+                            <div className="nav-link-wrapper">
+                                <NavLink exact to="/categories" className='navbar__option'>
+                                    <div className='navbar__option__text' >My account</div>
+                                </NavLink>
+                            </div>            
+                        : ''
+                        
                     }
                     
                     <div className="nav-link-wrapper">
@@ -61,7 +72,11 @@ class Navbar extends Component {
                         </NavLink>
                     </div>
                     <div className="nav-link-wrapper">
+                        {(loggedInStatus=="LOGGED_IN") ?
+                        <NavLink exact to="/login" activeClassName="av-link-active" onClick={this.handleSuccessfulLogout}>Logout</NavLink>
+                        :
                         <NavLink exact to="/login" activeClassName="av-link-active">Login</NavLink>
+                        }
                     </div>
 
                 </div>

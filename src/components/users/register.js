@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 
-import { connect} from 'react-redux';
-import * as actions from '../../actions';
 import RegisterForm from './registerForm';
 
 
 class Register extends Component {
-    onSubmit = (fields) => {
-        console.log('registrar');
-        console.log(fields);
-        // this.props.signIn(fields);
-        // this.props.history.push('/account');
+    constructor(props) {
+        super(props);
+    
+        this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
+    }
+    handleSuccessfulLogin(userType){
+        this.props.handleSuccessfulLogin(userType);
     }
     render() {
         return (
             <div className='register'>
-                <RegisterForm onSubmit={this.onSubmit} className='register__form' />
+                <RegisterForm 
+                handleSuccessfulLogin={this.handleSuccessfulLogin}
+                className='register__form' />
             </div>
         );
     }
 }
-
-Register = connect(null, actions)(Register);
 
 export default Register;

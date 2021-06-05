@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Route, Redirect} from 'react-router';
+import {Redirect} from 'react-router';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class LoginForm extends Component {
         this.props.handleSuccessfulLogin(response.data.userType[0].usertype_name);
         this.setState({
           redirect:true
-        })
+        });
       } else {
         console.log('denegado');
         this.props.handleUnsuccessfulLogin();

@@ -38,7 +38,8 @@ export default class App extends Component {
   handleSuccessfulLogout() {
     console.log('Saliste te logeaste');
     this.setState({
-      loggedInStatus: "LOGGED_IN"
+      loggedInStatus: "NOT_LOGGED_IN",
+      userTypeLogged: ""
     });
   }
 
@@ -47,7 +48,9 @@ export default class App extends Component {
       <div className='app'>
         <Router>
           <div>
-            <Navbar userTypeLogged={this.state.userTypeLogged} />
+            <Navbar userTypeLogged={this.state.userTypeLogged} loggedInStatus={this.state.loggedInStatus}
+            handleSuccessfulLogout={this.handleSuccessfulLogout}
+            />
           
             <Switch>
               <Route path='/' exact component={Home}/>

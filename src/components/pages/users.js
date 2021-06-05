@@ -12,7 +12,7 @@ class Users extends Component {
         this.showLogin = this.showLogin.bind(this);
         this.showRegister = this.showRegister.bind(this);
         this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
-        this.handleUnsuccessfulLogin = this.handleSuccessfulLogin.bind(this);
+        this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
     }
     showLogin() {
         this.setState({ show: "Login" });
@@ -36,9 +36,12 @@ class Users extends Component {
                 {(this.state.show === 'Login') ?
                     <Login 
                         handleSuccessfulLogin={this.handleSuccessfulLogin} 
-                        handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}/>
-                    : 
-                    <Register />
+                        handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
+                        />
+                : 
+                    <Register 
+                        handleSuccessfulLogin={this.handleSuccessfulLogin} 
+                        />
                 }
                 
             </div>
