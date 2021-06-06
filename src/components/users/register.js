@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 
 import RegisterForm from './registerForm';
 
-
 class Register extends Component {
     constructor(props) {
         super(props);
     
         this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
     }
-    handleSuccessfulLogin(userType){
-        this.props.handleSuccessfulLogin(userType);
+    handleSuccessfulLogin(user){
+        this.props.handleSuccessfulLogin(user);
     }
     render() {
+        const { className } = this.props;
         return (
-            <div className='register'>
+            <div className={`${className}`}>
                 <RegisterForm 
+                className={`${className}__form`}
                 handleSuccessfulLogin={this.handleSuccessfulLogin}
                 className='register__form' />
             </div>

@@ -14,7 +14,7 @@ class LoginForm extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
   handleChange(event){
     this.setState({
@@ -23,14 +23,14 @@ class LoginForm extends Component {
     });
   }
 
-  handleSubmit(event){
-    
+  handleLoginSubmit(event){
+    console.log(this.state.password);
     axios.get(`http://127.0.0.1:5000/userInfo/${this.state.email}/${this.state.password}`,
     ).then(response =>{
       
       if (response.data.response=='Accepted') {
         console.log('aceptado');
-        this.props.handleSuccessfulLogin(response.data.userType[0].usertype_name);
+        this.props.handleSuccessfulLogin(response.data);
         this.setState({
           redirect:true
         });
@@ -47,7 +47,6 @@ class LoginForm extends Component {
     });
     // this.props.handleSuccessfulLogin();
     event.preventDefault();
-    
   }
 
   render() {
@@ -73,8 +72,8 @@ class LoginForm extends Component {
       return <Redirect to='/'/>;
     }
     return (
-        <form onSubmit={this.handleSubmit} className={`${className}`}>
-          <div className="form-group">
+        <form onSubmit={this.handleLoginSubmit} className={`${className}`}>
+          <div className={`${className}-group`}>
             <input
               type="email"
               name="email"
@@ -83,8 +82,9 @@ class LoginForm extends Component {
               required
               onChange={this.handleChange}
             />
+            <label>Email</label>
           </div>
-          <div>
+          <div className={`${className}-group`}>
             <input
               type="password"
               name="password"
@@ -93,8 +93,10 @@ class LoginForm extends Component {
               required
               onChange={this.handleChange}
             />
+            <label>Password</label>
           </div>
-          <button className={`${className}__login`} type="submit">Login</button>
+
+          <button className={`${className}__submit`} type="submit">Login</button>
 
         </form>
 

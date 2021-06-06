@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Redirect} from 'react-router';
 
+import CreateModal from '../modals/createModal';
 
 class RegisterForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      redirect: false,
-      response_error: "",
+      openModal: false,
+      response_submit: "",
       user_name: "",
       user_surname: "", 
       user_email: "",
-      user_password: ""
+      user_password: "",
+      user: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -41,26 +42,29 @@ class RegisterForm extends Component {
         },
       }
     ).then(response => {
-      this.props.handleSuccessfulLogin(response.data.userType[0].usertype_name);
+      this.props.handleSuccessfulLogin(response.data);
       this.setState({
-        redirect:true
+        openModal:true,
+        response_submit: 'User created',
+        user: response.data
       });
+      document.getElementById('user_option').style.display = "none";
     })
     .catch(error => {
       this.setState({
-        errorText: "An error occured"
+        response_submit: "An error occured"
       })
     });
     event.preventDefault();
   }
   render() {
     const { className } = this.props;
-    if (this.state.redirect) {
-      return <Redirect to='/'/>;
+    if (this.state.openModal) {
+      return <CreateModal message={this.state.response_submit} direction='/' user={this.state.userType} openModal={this.state.openModal}/>
     }
     return (
           <form onSubmit={this.handleRegisterSubmit} className={`${className}`}>
-            <div className="form-group">
+            <div className={`${className}-group`}>
               <input
                 type="text"
                 name="user_name"
@@ -69,9 +73,10 @@ class RegisterForm extends Component {
                 required
                 onChange={this.handleChange}
               />
+              <label>Your name</label>
             </div>
             
-            <div className="form-group">
+            <div className={`${className}-group`}>
               <input
                 type="text"
                 name="user_surname"
@@ -80,9 +85,10 @@ class RegisterForm extends Component {
                 required
                 onChange={this.handleChange}
               />
+              <label>Your surname</label>
             </div>
 
-            <div className="form-group">
+            <div className={`${className}-group`}>
               <input
                 type="email"
                 name="user_email"
@@ -91,21 +97,22 @@ class RegisterForm extends Component {
                 required
                 onChange={this.handleChange}
               />
+              <label>Email</label>
             </div>
 
     
-            <div>
-            <input
-              className={`${className}__password`}
-              type="password"
-              name="user_password"
-              placeholder="Your password"
-              value={this.state.password}
-              required
-              onChange={this.handleChange}
-            />
-          </div>
-          <button className={`${className}__login`} type="submit">Register</button>
+            <div className={`${className}-group`}>
+              <input
+                type="password"
+                name="user_password"
+                placeholder="Your password"
+                value={this.state.password}
+                required
+                onChange={this.handleChange}
+              />
+              <label>Password</label>
+            </div>
+          <button className={`${className}__submit`} type="submit">Register</button>
 
 
         </form>

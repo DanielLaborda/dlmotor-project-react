@@ -10,20 +10,23 @@ class Login extends Component {
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
     this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
   }
-  handleSuccessfulLogin(userType){
-    this.props.handleSuccessfulLogin(userType);
+  handleSuccessfulLogin(user){
+    this.props.handleSuccessfulLogin(user);
   }
   handleUnsuccessfulLogin(){
       this.props.handleUnsuccessfulLogin();
   }
   
   render() {
+    const { className } = this.props;
+
     return (
-      <div className='sign-in'>
+      <div className={`${className}`}>
           <LoginForm 
+          className={`${className}__form`}
           handleSuccessfulLogin={this.handleSuccessfulLogin}
           handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
-          className='sign-in__form' />
+          />
       </div>
     );
   }

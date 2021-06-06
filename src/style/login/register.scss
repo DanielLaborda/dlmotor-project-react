@@ -1,0 +1,51 @@
+.register {
+    &__form {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    
+        &-group {
+            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+            width: 500px;
+            
+            input {
+                width: 480px;
+                padding: 10px;
+                border: 0px;
+                border-bottom: 1px solid #282c30;
+                font-size: 18px;
+                overflow: hidden!important;
+                background-color: transparent;
+                outline: none;
+
+                &:focus {
+                    border-bottom: 2px solid #282c30;
+                }
+            }
+            label {
+                font-size: 16px;
+                font-weight: 600;
+            }
+        }
+
+        &__submit {
+            cursor: pointer;
+            height: 50px;
+            background-color: #0fe0f5;
+            border: 0;
+            color: #282c30;
+            font-size: 18px;
+            font-weight: 600;
+
+            &:hover {
+                background-color: #0dbece;
+            }
+            &:active {
+                background-color: #f8ba46;
+            }
+        }
+        
+    }
+}

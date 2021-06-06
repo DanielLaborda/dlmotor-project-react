@@ -13,18 +13,17 @@ export default class App extends Component {
 
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
-      userTypeLogged: ""
+      userLogged: {}
     };
 
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
     this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
     this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
   }
-  handleSuccessfulLogin(userType) {
-    
+  handleSuccessfulLogin(user) {
     this.setState({
       loggedInStatus: "LOGGED_IN",
-      userTypeLogged: userType
+      userLogged: user
     });
   }
 
@@ -39,7 +38,7 @@ export default class App extends Component {
     console.log('Saliste te logeaste');
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
-      userTypeLogged: ""
+      userLogged: {}
     });
   }
 
@@ -48,7 +47,7 @@ export default class App extends Component {
       <div className='app'>
         <Router>
           <div>
-            <Navbar userTypeLogged={this.state.userTypeLogged} loggedInStatus={this.state.loggedInStatus}
+            <Navbar userLogged={this.state.userLogged} loggedInStatus={this.state.loggedInStatus}
             handleSuccessfulLogout={this.handleSuccessfulLogout}
             />
           

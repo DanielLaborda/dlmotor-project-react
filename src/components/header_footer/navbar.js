@@ -29,7 +29,7 @@ class Navbar extends Component {
     }
 
     render() {
-        const { userTypeLogged, loggedInStatus } = this.props;
+        const { userLogged, loggedInStatus } = this.props;
         return(
             <div className='navbar'>
                 <div className="navbar__logo-side">
@@ -40,20 +40,25 @@ class Navbar extends Component {
                 </div>
                 <div className="navbar__left-side">
                     {   
-                        (userTypeLogged == "Administrator")?
-                            <div className="nav-link-wrapper">
-                                <NavLink exact to="/categories" className='navbar__option'>
-                                    <div className='navbar__option__text' >Dashboard</div>
-                                </NavLink>
-                            </div>
-                        :(userTypeLogged == "Customer")?
-                            <div className="nav-link-wrapper">
-                                <NavLink exact to="/categories" className='navbar__option'>
-                                    <div className='navbar__option__text' >My account</div>
-                                </NavLink>
-                            </div>            
-                        : ''
-                        
+                        (userLogged.length > 0)?
+                            ""
+                        :
+                            (userLogged.userType)?
+                                (userLogged.userType[0].usertype_name == "Administrator")?
+                                   <div className="nav-link-wrapper">
+                                       <NavLink exact to="/categories" className='navbar__option'>
+                                           <div className='navbar__option__text' >Dashboard</div>
+                                        </NavLink>
+                                    </div>
+                                :(userLogged.userType[0].usertype_name == "Customer")?
+                                    <div className="nav-link-wrapper">
+                                        <NavLink exact to="/categories" className='navbar__option'>
+                                            <div className='navbar__option__text' >My account</div>
+                                        </NavLink>
+                                    </div>  
+                                :""      
+                            :""
+
                     }
                     
                     <div className="nav-link-wrapper">

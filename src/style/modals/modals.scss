@@ -1,0 +1,49 @@
+.createModal {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    div{
+        text-align: center;
+    }
+    &__icon {
+        font-size: 150px;
+        color: #56BA03;
+        animation-name: colorRotateAnimation;
+        animation-duration: 2s;
+    }
+    &__title {
+        font-size: 24px;
+        font-weight: 600;
+    }
+    &__login {
+        cursor: pointer;
+        width: 500px;
+        height: 50px;
+        background-color: #0fe0f5;
+        border: 0;
+        color: #282c30;
+        font-size: 18px;
+        font-weight: 600;
+
+        &:hover {
+            background-color: #469A00;
+        }
+        &:active {
+            background-color: #76D726;
+        }
+    }
+}
+
+@keyframes colorRotateAnimation { 
+    0% {
+        transform: rotate(0turn);
+        color: #469A00;
+    }
+    65% {
+        color: #76D726;
+    }
+    100% {
+        transform: rotate(3turn);
+        color: #56BA03;
+    }
+}
