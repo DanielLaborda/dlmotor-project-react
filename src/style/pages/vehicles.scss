@@ -1,0 +1,142 @@
+.vehicles {
+    background-color: #282c30;
+    display: grid;
+    grid-template-rows: [banner-s] 700px [banner-e description-s] 250px [description-e images-s] 1fr [images-e btn-s] 100px [btn-e];
+    justify-content: center;
+    
+    &-wrapper {
+        background-color: #282c30;
+    }
+    &__banner{
+        position: relative;
+        grid-row: banner-s/banner-e;
+        max-width: 100vw;
+        height: 700px;
+        text-transform: uppercase;
+        font-weight: 600;
+
+
+        &__title {
+            position: absolute;
+            top: 175px;
+            margin-left: 140px;
+            font-size: 34px;
+            font-weight: 600;
+        }  
+        &__slogan {
+            position: absolute;
+            top: 250px;
+            margin-left: 140px;
+            font-size: 20px;
+
+        }    
+    }
+
+    &__description {
+        grid-row: description-s/description-e;
+        margin: 40px;
+        height: 250px;
+        text-align: center;
+        display: grid;
+        justify-content: center;
+        color: #ccc;
+        &__text {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        &__warranty {
+            font-size: 20px;
+            font-weight: 600;
+        }
+    }
+
+    &__images  {
+        grid-column: images-s/images-e;
+        display: flex;
+        flex-flow: row wrap;
+        &__item-8 {
+            width: calc(2 / 3 * 100%);
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        &__item-4 {
+            width: calc(1 / 3 * 100%);
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    &__configuration {
+        background-color: #282c30;
+        grid-row: btn-s/btn-e;
+        height: 100px;
+        padding: 30px;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        &__btn {
+            width: 243px;
+            background-color: #0fe0f5;
+            color: #3b4248;
+            box-shadow: 0px 0px 40px -5px rgba(0,0,0,0.75);
+            font-size: 24px;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            &:hover {
+                //background-color: #fabd4b;
+                background: #f8ba46;
+            }
+        }
+    }
+    
+
+    &__versions {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: center;
+
+
+        &__card {
+            width: 300px;
+            justify-self: center;
+            display: grid;
+            &__image{
+                justify-self: center;
+                width: 250px;
+                height: auto;
+            }
+        }
+       
+    } 
+    &__colors{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        
+        &__item {
+            display: grid;
+            justify-self: center;
+            &__color {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    }
+}   
+
+/* Mediaqueries */
+@media (max-width: 768px) {
+    .vehicles__description__text {
+        font-size: 14px;
+    }
+}
+
+

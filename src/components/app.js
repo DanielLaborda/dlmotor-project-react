@@ -7,6 +7,7 @@ import Garage from './pages/garage';
 import Home from './pages/home';
 import RacingTeam from './pages/racingTeam';
 import Users from './pages/users';
+import Vehicles from './pages/vehicles';
 
 export default class App extends Component {
   constructor(props) {
@@ -55,6 +56,7 @@ export default class App extends Component {
             <Switch>
               <Route path='/' exact component={Home}/>
               <Route path='/categories' exact component={Categories}/>
+              <Route path='/vehicles/:id' component={Vehicles}/>
               <Route path='/garage' exact component={Garage}/>
               <Route path='/racingTeam' exact component={RacingTeam}/>
               <Route path='/login' render={ props=>(

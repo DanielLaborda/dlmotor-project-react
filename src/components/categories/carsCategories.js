@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import history from '../../history';
+import {Redirect} from 'react-router';
 
 class CarsCategories extends Component{
     constructor(props) {
@@ -17,9 +17,9 @@ class CarsCategories extends Component{
         });
     }
     render(){
-        const { className, vehicles_name, vehicles_id, vehicles_image_category} = this.props;  
+        const { className, vehicles_name, vehicles_id, vehicles_image_category} = this.props;
         if (this.state.redirect) {
-            return <Redirect to={'/vehicles/'+vehicles_id}/>;
+            return <Redirect to={`/vehicles/${vehicles_id}`}/>;
         }
         
         return (
