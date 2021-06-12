@@ -47,3 +47,40 @@
         color: #56BA03;
     }
 }
+
+.swal2-title {
+    font-size: 20px;
+}
+.swal2-confirm {
+    font-size: 20px!important;
+    background-color: #0fe0f5!important;
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba(15, 224, 245, 0.5)!important;
+    }
+
+}
+.swal2-modal {
+    width: 500px;
+    table {
+        margin-top: 10px;
+        width: 100%;
+        font-size: 18px;
+    }
+}
+
+.modal-input {
+    text-align: right!important;
+    label{
+        font-size: 14px;
+    }
+    .swal2-input{
+        margin: 1em 0 0;
+        width: 100%;
+        font-size: 18px;
+    }
+    
+}
+.title-vehicle {
+    margin: 10px 20px;
+}

@@ -1,32 +1,41 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import {Redirect} from 'react-router';
+
 import ImagesVehicles from "../vehicles/imagesVehicles";
-
-// import ImagesVehicles from "../vehicles/imagesVehicles";
-
-// import history from '../../history';
-
 
 class Vehicles extends Component{
     constructor() {
         super();
 
         this.state = {
+            redirect: false,
             vehicle: []
         }
+        this.onRedirect = this.onRedirect.bind(this);
     }
+    
     componentDidMount(){
         const id = this.props.match.params.id;
         axios.get(`http://127.0.0.1:5000/vehiclesbyid/${id}`
         ).then(response=> {
             this.setState({
                 vehicle:response.data
-            })
-            
+            });
         });
+    }
+    onRedirect() {
+        this.setState({
+            redirect: true
+        })
     }
     render(){
         let alter = true;
+
+        if (this.state.redirect) {
+            return <Redirect to={`/configuration/${this.state.vehicle.vehicles_id}`}/>
+        }
+
         return (
             <div className='vehicles'>
                 
@@ -74,9 +83,8 @@ class Vehicles extends Component{
                         </div>
 
                         <div className='vehicles__configuration'>
-                            <a onClick={() => <Redirect to={`/vehicles/${vehicles_id}`}/>} className={'vehicles__configuration__btn'}>Configuration</a>
+                            <a onClick={this.onRedirect} className={'vehicles__configuration__btn'}>Configuration</a>
                         </div>    
-                        {/* history.push('/configuration/'+vehicle._id) */}
                     </div>
 
     

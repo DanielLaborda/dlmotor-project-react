@@ -8,6 +8,7 @@ import Home from './pages/home';
 import RacingTeam from './pages/racingTeam';
 import Users from './pages/users';
 import Vehicles from './pages/vehicles';
+import Configuration from './pages/configuration';
 
 export default class App extends Component {
   constructor(props) {
@@ -57,6 +58,12 @@ export default class App extends Component {
               <Route path='/' exact component={Home}/>
               <Route path='/categories' exact component={Categories}/>
               <Route path='/vehicles/:id' component={Vehicles}/>
+              <Route path='/configuration/:id' render={ props=>(
+                <Configuration 
+                  {...props}
+                  userLogged={this.state.userLogged} 
+                />
+              )}/>
               <Route path='/garage' exact component={Garage}/>
               <Route path='/racingTeam' exact component={RacingTeam}/>
               <Route path='/login' render={ props=>(
