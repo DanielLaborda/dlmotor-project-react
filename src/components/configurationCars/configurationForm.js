@@ -69,21 +69,20 @@ class ConfigurationForm extends Component{
         let total = 0;
         if(this.state.version !='' && this.state.colors !='' && this.state.interior !='' && this.state.rims !='' ){
             total = this.state.version.versionsvehicles_baseprice + this.state.colors.colors_price + this.state.interior.interior_basePrice + this.state.rims.rims_baseprice;
-            console.log(this.state.userLogged)
             if(Object.keys(this.state.userLogged).length == 0){
                 Swal.fire({
                     title: 'Just a little more!',
                     icon: 'question',
                     html: `<h4>We need your information to communicate with you</h4>
-                        <div class="modal-input">       
+                        <div className="modal-input">       
                                 <input type="name" id="name" class="swal2-input" placeholder="Name">
                                 <label>Contact Name</label>
                         </div>
-                        <div class="modal-input">    
+                        <div className="modal-input">    
                                 <input type="email" id="email" class="swal2-input" placeholder="Email">
                                 <label>Email</label>
                         </div>
-                        <h2 class="title-vehicle">${this.state.vehicle}</h2>
+                        <h2 className="title-vehicle">${this.state.vehicle}</h2>
                         <table>
                             <tr>
                             <th>Version</th>
@@ -118,9 +117,9 @@ class ConfigurationForm extends Component{
                     const nameCustomer = Swal.getPopup().querySelector('#name').value
                     const emailCustomer = Swal.getPopup().querySelector('#email').value
                     if (!nameCustomer || !emailCustomer) {
-                      Swal.showValidationMessage(`We need to contact you :(`)
+                      Swal.showValidationMessage(`We need to contact you :(`);
                     }
-                    return { nameCustomer: nameCustomer, emailCustomer: emailCustomer }
+                    return { nameCustomer: nameCustomer, emailCustomer: emailCustomer };
                   }
                 }).then((result) => {
                     const data = {
@@ -171,7 +170,7 @@ class ConfigurationForm extends Component{
                     title: 'Just a little more!',
                     icon: 'question',
                     html: `<h4>We will communicate with you as soon as possible</h4>
-                           <h2 class="title-vehicle">${this.state.vehicle}</h2>
+                           <h2 className="title-vehicle">${this.state.vehicle}</h2>
                            <table>
                             <tr>
                               <th>Version</th>
@@ -203,8 +202,6 @@ class ConfigurationForm extends Component{
                            `,
                     confirmButtonText: 'Cool',
                     }).then((result) => {
-                        console.log(`${this.state.userLogged.user_email} - ${this.state.userLogged.user_name} ${this.state.userLogged.user_surname}`);
-                        console.log(this.state);
                         const data = {
                             "quotes_customer": `${this.state.userLogged.user_name} ${this.state.userLogged.user_surname}`,
                             "quotes_email": this.state.userLogged.user_email,
@@ -246,7 +243,7 @@ class ConfigurationForm extends Component{
                                 });
                             });
                         }
-                    })
+                    });
             }
         } else {
             Swal.fire({

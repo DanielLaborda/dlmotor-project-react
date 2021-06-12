@@ -46,14 +46,14 @@ class Navbar extends Component {
                             (userLogged.userType)?
                                 (userLogged.userType[0].usertype_name == "Administrator")?
                                    <div className="nav-link-wrapper">
-                                       <NavLink exact to="/categories" className='navbar__option'>
-                                           <div className='navbar__option__text' >Dashboard</div>
+                                       <NavLink exact to="/quotes" className='navbar__option'>
+                                           <div className='navbar__option__text' >Quotes</div>
                                         </NavLink>
                                     </div>
                                 :(userLogged.userType[0].usertype_name == "Customer")?
                                     <div className="nav-link-wrapper">
-                                        <NavLink exact to="/categories" className='navbar__option'>
-                                            <div className='navbar__option__text' >My account</div>
+                                        <NavLink exact to="/quotes" className='navbar__option'>
+                                            <div className='navbar__option__text' >My quotes</div>
                                         </NavLink>
                                     </div>  
                                 :""      

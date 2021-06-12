@@ -9,6 +9,7 @@ import RacingTeam from './pages/racingTeam';
 import Users from './pages/users';
 import Vehicles from './pages/vehicles';
 import Configuration from './pages/configuration';
+import Quotes from './pages/quotes';
 
 export default class App extends Component {
   constructor(props) {
@@ -63,6 +64,12 @@ export default class App extends Component {
                   {...props}
                   userLogged={this.state.userLogged} 
                 />
+              )}/>
+              <Route path='/quotes' render={props => (
+                <Quotes
+                  {...props}
+                  userLogged={this.state.userLogged} 
+                />                
               )}/>
               <Route path='/garage' exact component={Garage}/>
               <Route path='/racingTeam' exact component={RacingTeam}/>
