@@ -75,11 +75,11 @@ class ConfigurationForm extends Component{
                     icon: 'question',
                     html: `<h4>We need your information to communicate with you</h4>
                         <div className="modal-input">       
-                                <input type="name" id="name" class="swal2-input" placeholder="Name">
+                                <input type="name" id="name" className="swal2-input" placeholder="Name">
                                 <label>Contact Name</label>
                         </div>
                         <div className="modal-input">    
-                                <input type="email" id="email" class="swal2-input" placeholder="Email">
+                                <input type="email" id="email" className="swal2-input" placeholder="Email">
                                 <label>Email</label>
                         </div>
                         <h2 className="title-vehicle">${this.state.vehicle}</h2>
