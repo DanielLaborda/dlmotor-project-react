@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
-
 import axios from 'axios';
+
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library, icon } from '@fortawesome/fontawesome-svg-core';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faBars)
 
 class Navbar extends Component {
     constructor() {
@@ -13,6 +19,7 @@ class Navbar extends Component {
             nameCompany: ''
         };
         this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
+        this.showHideMenu = this.showHideMenu.bind(this);
     }
     componentDidMount() {
         axios.get("http://127.0.0.1:5000/company/1"
@@ -28,17 +35,21 @@ class Navbar extends Component {
         this.props.handleSuccessfulLogout();
     }
 
+    showHideMenu() {
+        this.props.showHideMenu();
+    }
+
     render() {
         const { userLogged, loggedInStatus } = this.props;
         return(
             <div className='navbar'>
                 <div className="navbar__logo-side">
-                    <NavLink exact to="/" className='navbar__logo-side__content NavLink'>
+                    <NavLink exact to="/" className='navbar__logo-side__content NavLink' activeClassName="active-logo">
                         <img className='navbar__logo-side__img' src={`data:image/png;base64,${this.state.imageLogo}`} />
                         <div>{this.state.nameCompany}</div>
                     </NavLink>
                 </div>
-                <div className="navbar__left-side">
+                <div className="navbar__left-side" >
                     {   
                         (userLogged.length > 0)?
                             ""
@@ -67,23 +78,28 @@ class Navbar extends Component {
                         </NavLink>
                     </div>
                     <div className="nav-link-wrapper">
-                        <NavLink exact to="/garage" className='navbar__option'>
+                        <NavLink exact to="/garage" className='navbar__option' >
                             <div className='navbar__option__text' >Garage</div>
                         </NavLink>
                     </div>
                     <div className="nav-link-wrapper">
-                        <NavLink exact to="/racingTeam" className='navbar__option'>
+                        <NavLink exact to="/racingTeam" className='navbar__option' >
                             <div className='navbar__option__text' >Racing team</div>
                         </NavLink>
                     </div>
                     <div className="nav-link-wrapper">
                         {(loggedInStatus=="LOGGED_IN") ?
-                        <NavLink exact to="/login" activeClassName="av-link-active" onClick={this.handleSuccessfulLogout}>Logout</NavLink>
+                        <NavLink exact to="/login"  className='navbar__option' onClick={this.handleSuccessfulLogout}>Logout</NavLink>
                         :
-                        <NavLink exact to="/login" activeClassName="av-link-active">Login</NavLink>
+                        <NavLink exact to="/login"  className='navbar__option'>Login</NavLink>
                         }
                     </div>
 
+                </div>
+                <div className="navbar__mobileMenu">
+                    <a onClick={this.showHideMenu}>
+                    <FontAwesomeIcon className='mobileMenu__icon'  icon={ {prefix: 'fa', iconName: 'bars'} } />
+                    </a>
                 </div>
             </div>
         )

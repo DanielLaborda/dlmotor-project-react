@@ -1,0 +1,29 @@
+.navbarMobile {
+    text-align: center;
+    background: #ccc;
+    font-size: 18px;
+    font-weight: 600;
+
+    a {
+        text-decoration: none;
+    }
+    &-link-wrapper {
+        padding-bottom: 10px;
+    }
+
+    &__option {
+        color: #3b4248;
+        width: 150px;
+        padding: 6px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+
+        &:hover{
+            color: #0fe0f5;
+        }
+        
+    }
+}
+.active-mobile {
+    background-color: #f8ba46;
+}

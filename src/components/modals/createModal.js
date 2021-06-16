@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Redirect} from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library, icon } from '@fortawesome/fontawesome-svg-core';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faCheckCircle)
 

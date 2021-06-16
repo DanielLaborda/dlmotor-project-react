@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from  'react-router-dom';
 
 import Navbar from './header_footer/navbar';
+import NavbarMobile from './header_footer/navbarmobile';
 import Categories from './pages/categories';
 import Garage from './pages/garage';
 import Home from './pages/home';
@@ -17,17 +18,20 @@ export default class App extends Component {
 
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
-      userLogged: {}
+      userLogged: {},
+      mobileShowHide: false
     };
 
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
     this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
     this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
+    this.showHideMenu = this.showHideMenu.bind(this);
   }
   handleSuccessfulLogin(user) {
     this.setState({
       loggedInStatus: "LOGGED_IN",
-      userLogged: user
+      userLogged: user,
+      mobileShowHide: false
     });
   }
 
@@ -46,6 +50,18 @@ export default class App extends Component {
     });
   }
 
+  showHideMenu() {
+    if(this.state.mobileShowHide === false){
+        this.setState({
+            mobileShowHide: true
+        });
+    } else {
+        this.setState({
+            mobileShowHide: false
+        });
+    }  
+  }
+
   render() {
     return (
       <div className='app'>
@@ -53,7 +69,12 @@ export default class App extends Component {
           <div>
             <Navbar userLogged={this.state.userLogged} loggedInStatus={this.state.loggedInStatus}
             handleSuccessfulLogout={this.handleSuccessfulLogout}
+            showHideMenu={this.showHideMenu}
             />
+            <NavbarMobile
+              userLogged={this.state.userLogged} loggedInStatus={this.state.loggedInStatus}
+              mobileShowHide={this.state.mobileShowHide} />
+            
           
             <Switch>
               <Route path='/' exact component={Home}/>
