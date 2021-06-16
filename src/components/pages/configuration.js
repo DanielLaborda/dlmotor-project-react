@@ -22,17 +22,11 @@ class Configuration extends Component {
         });        
     }
 
-    submit(values) {
-        // print the form values to the console
-        console.log(values);
-    }
-
     render() {
         const { userLogged } = this.props;
-        console.log(userLogged);
         return (
             <div className={`configuration`}>
-                <ConfigurationForm userLogged={userLogged} key={this.state.vehicle.vehicles_name} className='configuration__form' {...this.state.vehicle} onSubmit={this.submit}/> 
+                <ConfigurationForm userLogged={userLogged} key={this.state.vehicle.vehicles_name} className='configuration__form' {...this.state.vehicle} /> 
             </div>
         );
     }

@@ -15,6 +15,7 @@ class ConfigurationForm extends Component{
 
         this.state = {
             userLogged: '',
+            vehicles_id: '',
             vehicle: '',
             version:'',
             imagenColor: '',
@@ -31,6 +32,9 @@ class ConfigurationForm extends Component{
     }
    
     componentDidMount() {
+        (this.props.vehicles_id)?
+            this.setState({vehicles_id: this.props.vehicles_id})
+        :'';
         (this.props.vehicles_colors)?
             this.setState({imagenColor: this.props.vehicles_colors[0].colors_image})
         :'';
@@ -75,11 +79,11 @@ class ConfigurationForm extends Component{
                     icon: 'question',
                     html: `<h4>We need your information to communicate with you</h4>
                         <div className="modal-input">       
-                                <input type="name" id="name" className="swal2-input" placeholder="Name">
+                                <input type="name" id="name" className="swal2-input" placeholder="Name"/>
                                 <label>Contact Name</label>
                         </div>
                         <div className="modal-input">    
-                                <input type="email" id="email" className="swal2-input" placeholder="Email">
+                                <input type="email" id="email" className="swal2-input" placeholder="Email"/>
                                 <label>Email</label>
                         </div>
                         <h2 className="title-vehicle">${this.state.vehicle}</h2>
@@ -125,6 +129,7 @@ class ConfigurationForm extends Component{
                     const data = {
                         "quotes_customer": result.value.nameCustomer,
                         "quotes_email": result.value.emailCustomer,
+                        "quotes_vehicleid": this.state.vehicles_id,
                         "quotes_modelvehicle": this.state.vehicle,
                         "quotes_version": this.state.version.versionsVehicles_id,
                         "quotes_versionprice": this.state.version.versionsvehicles_baseprice,
@@ -205,6 +210,7 @@ class ConfigurationForm extends Component{
                         const data = {
                             "quotes_customer": `${this.state.userLogged.user_name} ${this.state.userLogged.user_surname}`,
                             "quotes_email": this.state.userLogged.user_email,
+                            "quotes_vehicleid": this.state.vehicles_id,
                             "quotes_modelvehicle": this.state.vehicle,
                             "quotes_version": this.state.version.versionsVehicles_id,
                             "quotes_versionprice": this.state.version.versionsvehicles_baseprice,
