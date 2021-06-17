@@ -3,6 +3,7 @@
         display: grid;
         justify-content: center;
         align-items: center;
+        padding: 20px;
     
         &__error {
             font-size: 20px;
@@ -67,4 +68,9 @@
     .register__form-group input {
         width: calc(100% - 55px);
     }
+}
+
+.green {
+    border-color: #56BA03;
+    color: #56BA03;
 }

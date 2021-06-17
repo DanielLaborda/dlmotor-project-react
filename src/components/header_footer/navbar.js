@@ -6,9 +6,9 @@ import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library, icon } from '@fortawesome/fontawesome-svg-core';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faUsers, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faBars)
+library.add(faBars, faUsers, faSignOutAlt)
 
 class Navbar extends Component {
     constructor() {
@@ -89,7 +89,21 @@ class Navbar extends Component {
                     </div>
                     <div className="nav-link-wrapper">
                         {(loggedInStatus=="LOGGED_IN") ?
-                        <NavLink exact to="/login"  className='navbar__option' onClick={this.handleSuccessfulLogout}>Logout</NavLink>
+                                
+                            (userLogged.userType[0].usertype_name == "Administrator")?
+                                <div className="navbar__options__admin">
+                                    <NavLink exact to="/createadmin" className='navbar__option'>
+                                        <FontAwesomeIcon className='navbar__option'  icon={ {prefix: 'fa', iconName: 'users'} } />
+                                    </NavLink> 
+                                    <NavLink exact to="/login"  className='navbar__option' onClick={this.handleSuccessfulLogout}>
+                                        <FontAwesomeIcon className='navbar__option'  icon={ {prefix: 'fa', iconName: 'sign-out-alt'} } />
+                                    </NavLink>
+                                </div>
+                            : 
+                                <NavLink exact to="/login"  className='navbar__option' onClick={this.handleSuccessfulLogout}>
+                                    <FontAwesomeIcon className='navbar__option'  icon={ {prefix: 'fa', iconName: 'sign-out-alt'} } />
+                                </NavLink>                        
+                            
                         :
                         <NavLink exact to="/login"  className='navbar__option'>Login</NavLink>
                         }

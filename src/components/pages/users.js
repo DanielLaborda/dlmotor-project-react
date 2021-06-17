@@ -62,6 +62,7 @@ class Users extends Component {
                                 />
                         : 
                             <Register 
+                                typeUser={2}
                                 className="register"
                                 handleSuccessfulLogin={this.handleSuccessfulLogin} 
                                 />

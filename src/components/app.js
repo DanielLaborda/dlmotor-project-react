@@ -11,6 +11,7 @@ import Users from './pages/users';
 import Vehicles from './pages/vehicles';
 import Configuration from './pages/configuration';
 import Quotes from './pages/quotes';
+import CreateAdmin from './pages/createAdmin';
 
 export default class App extends Component {
   constructor(props) {
@@ -96,6 +97,13 @@ export default class App extends Component {
               <Route path='/racingTeam' exact component={RacingTeam}/>
               <Route path='/login' render={ props=>(
                 <Users 
+                  {...props}
+                  handleSuccessfulLogin={this.handleSuccessfulLogin}
+                  handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
+                />
+              )}/>
+              <Route path='/createadmin' render={ props=>(
+                <CreateAdmin 
                   {...props}
                   handleSuccessfulLogin={this.handleSuccessfulLogin}
                   handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}

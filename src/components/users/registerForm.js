@@ -9,6 +9,7 @@ class RegisterForm extends Component {
 
     this.state = {
       openModal: false,
+      colorGreen: '',
       errorMessage: '',
       response_submit: "",
       user_name: "",
@@ -34,7 +35,7 @@ class RegisterForm extends Component {
           users_surname: this.state.user_surname,
           users_email: this.state.user_email,
           users_password: this.state.user_password,
-          users_type: 2
+          users_type: this.props.typeUser
       },{
         headers: {
           "Access-Control-Allow-Headers" : "Content-Type",
@@ -44,13 +45,21 @@ class RegisterForm extends Component {
       }
     ).then(response => {
       if(response.data.response == "Accepted"){
-        this.props.handleSuccessfulLogin(response.data);
-        this.setState({
-          openModal:true,
-          response_submit: 'User created',
-          user: response.data
-        });
-        document.getElementById('user_option').style.display = "none";
+        if(this.props.typeUser == 1){
+          this.setState({
+            errorMessage:"User created",
+            colorGreen: 'green'
+          });
+        } else {
+          this.props.handleSuccessfulLogin(response.data);
+          this.setState({
+            openModal:true,
+            response_submit: 'User created',
+            user: response.data
+          });
+          document.getElementById('user_option').style.display = "none";
+        }
+        
       } else {
         this.setState({errorMessage:response.data.response});
       
@@ -71,7 +80,7 @@ class RegisterForm extends Component {
     return (
           <form onSubmit={this.handleRegisterSubmit} className={`${className}`}>
             {(this.state.errorMessage)?
-              <div className={`${className}__error`}>
+              <div className={`${className}__error ${(this.state.colorGreen)? 'green':''}`}>
                 {this.state.errorMessage}
               </div>
             :''}

@@ -12,10 +12,11 @@ class Register extends Component {
         this.props.handleSuccessfulLogin(user);
     }
     render() {
-        const { className } = this.props;
+        const { className, typeUser } = this.props;
         return (
             <div className={`${className}`}>
                 <RegisterForm 
+                typeUser={typeUser}
                 className={`${className}__form`}
                 handleSuccessfulLogin={this.handleSuccessfulLogin}
                 className='register__form' />
