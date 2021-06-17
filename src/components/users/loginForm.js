@@ -24,18 +24,18 @@ class LoginForm extends Component {
   }
 
   handleLoginSubmit(event){
-    console.log(this.state.password);
     axios.get(`http://127.0.0.1:5000/userInfo/${this.state.email}/${this.state.password}`,
     ).then(response =>{
       
       if (response.data.response=='Accepted') {
-        console.log('aceptado');
         this.props.handleSuccessfulLogin(response.data);
         this.setState({
           redirect:true
         });
       } else {
-        console.log('denegado');
+        this.setState({
+          response_error: response.data.response
+        });
         this.props.handleUnsuccessfulLogin();
       }
     
@@ -43,7 +43,7 @@ class LoginForm extends Component {
     ).catch(error => {
       this.setState({
         response_error: "An error occured"
-      })
+      });
     });
     // this.props.handleSuccessfulLogin();
     event.preventDefault();
@@ -73,6 +73,12 @@ class LoginForm extends Component {
     }
     return (
         <form onSubmit={this.handleLoginSubmit} className={`${className}`}>
+          {(this.state.response_error)?
+            <div className={`${className}__error`}>
+              {this.state.response_error}
+            </div>
+          :''}
+          
           <div className={`${className}-group`}>
             <input
               type="email"

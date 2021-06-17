@@ -9,6 +9,7 @@ class RegisterForm extends Component {
 
     this.state = {
       openModal: false,
+      errorMessage: '',
       response_submit: "",
       user_name: "",
       user_surname: "", 
@@ -42,13 +43,18 @@ class RegisterForm extends Component {
         },
       }
     ).then(response => {
-      this.props.handleSuccessfulLogin(response.data);
-      this.setState({
-        openModal:true,
-        response_submit: 'User created',
-        user: response.data
-      });
-      document.getElementById('user_option').style.display = "none";
+      if(response.data.response == "Accepted"){
+        this.props.handleSuccessfulLogin(response.data);
+        this.setState({
+          openModal:true,
+          response_submit: 'User created',
+          user: response.data
+        });
+        document.getElementById('user_option').style.display = "none";
+      } else {
+        this.setState({errorMessage:response.data.response});
+      
+      }
     })
     .catch(error => {
       this.setState({
@@ -64,6 +70,12 @@ class RegisterForm extends Component {
     }
     return (
           <form onSubmit={this.handleRegisterSubmit} className={`${className}`}>
+            {(this.state.errorMessage)?
+              <div className={`${className}__error`}>
+                {this.state.errorMessage}
+              </div>
+            :''}
+            
             <div className={`${className}-group`}>
               <input
                 type="text"
