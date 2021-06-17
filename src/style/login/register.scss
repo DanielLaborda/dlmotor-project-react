@@ -49,3 +49,12 @@
         
     }
 }
+
+@media (max-width: 500px) {
+    .register__form-group {
+        width: 100%;
+    }
+    .register__form-group input {
+        width: calc(100% - 55px);
+    }
+}
