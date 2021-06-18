@@ -25,6 +25,8 @@ class Categories extends Component{
             this.setState({
                 vehicles:response.data
             })
+            
+            console.log(`vehicles: ${response.data}`);
         })
     }
     showHide(id) {
