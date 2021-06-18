@@ -1,5 +1,7 @@
-# React/Redux/Router Starter Project
+# Project React Dlmotorsport
 
-> Provided for the students of the [Bottega Code School](https://bottega.tech/)
+> Project for a small brand dealership 
 
-*Fork from [es6-webpack2-starter](https://github.com/micooz/es6-webpack2-starter)*
+*git hub project(https://github.com/DanielLaborda/dlmotor-project-react)*
+*git hub api(https://github.com/DanielLaborda/dlmotor-project-react)*
+*BBDD MySQL with PHPMyAdmin on db4Free
