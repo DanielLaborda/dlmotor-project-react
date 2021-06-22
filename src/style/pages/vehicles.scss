@@ -14,21 +14,24 @@
         height: 700px;
         text-transform: uppercase;
         font-weight: 600;
-
+        
 
         &__title {
             position: absolute;
+            background-color: #0fe0f5;
             top: 175px;
             margin-left: 140px;
             font-size: 34px;
             font-weight: 600;
+            padding: 5px 20px;
         }  
         &__slogan {
             position: absolute;
+            background-color: #f8ba46;
             top: 250px;
             margin-left: 140px;
             font-size: 20px;
-
+            padding: 5px 20px;
         }    
     }
 
@@ -54,6 +57,7 @@
         grid-column: images-s/images-e;
         display: flex;
         flex-flow: row wrap;
+        background-color: #282c30;
         &__item-8 {
             width: calc(2 / 3 * 100%);
             img {

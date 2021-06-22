@@ -25,6 +25,10 @@
         padding: 20px;
         background-color: #282c30;
         color: #ccc;
+        &__arrow {
+            font-size: 18px;
+            color: #ccc;
+        }
     }
 
     &__form{
@@ -209,4 +213,41 @@
     align-items: center;
     font-size: 24px;
     font-weight: 600;
+}
+
+@media (max-width: 1400px) {
+    .quotes__form__principal,
+    .quotes__form__personal__content,
+    .quotes__form__vehicle,
+    .quotes__form__total,
+    .quotes__form__buttons  {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .quotes__form__discount__text {
+        margin-bottom: 10px;
+    }
+    .quotes__content__error,
+    .quotes__content__title,
+    .quotes__form__principal__status {
+        text-align: center;
+    }
+}
+
+@media (max-width: 850px) {
+    .quotes {
+        grid-template-columns: 1fr;
+    }
+    .quotes__sidebar {
+        display: none;
+    }
+    .quotes__content {
+        padding: 0;
+    }
+    .input-select,
+    .input-text {
+        width: 94%;
+        max-width: 500px;
+    }
 }

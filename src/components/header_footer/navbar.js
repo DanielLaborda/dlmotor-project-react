@@ -73,7 +73,7 @@ class Navbar extends Component {
                     }
                     
                     <div className="nav-link-wrapper">
-                        <NavLink exact to="/categories" className='navbar__option'>
+                        <NavLink exact to="/categories" className='navbar__option' >
                             <div className='navbar__option__text' >Categories</div>
                         </NavLink>
                     </div>

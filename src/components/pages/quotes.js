@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import axios from 'axios';
 
 import QuotesForm from "../quote/quoteForm";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library, icon } from '@fortawesome/fontawesome-svg-core';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faArrowRight, faArrowLeft)
 
 class Quotes extends Component{
     constructor(props) {
@@ -53,12 +58,25 @@ class Quotes extends Component{
     selectQuote(e) {
         this.setState({quote: this.state.quotes[e.target.value]});
     }
+    openQuoteList() {
+        if (document.getElementById("quotes__sidebar").style.display == "none"){
+            document.getElementById('quotes__sidebar').style.display = 'block';
+            document.getElementById("quotes__content").style.display = "none";
+        } else {
+            document.getElementById("quotes__sidebar").style.display = "none";
+            document.getElementById('quotes__content').style.display = 'block';
+        }
+        
+    }
     render() {
         const { userLogged } = this.props
         return (
             <div className='quotes'>
 
-                <div className='quotes__sidebar'>
+                <div id='quotes__sidebar' className='quotes__sidebar'>
+                    <a onClick={this.openQuoteList}>
+                        <FontAwesomeIcon className='navbar__option'  icon={ {prefix: 'fa', iconName: 'arrow-left'} } />
+                    </a>
                     <ul className='quotes__sidebar__list'>
                         {(this.state.quotes)?
                             this.state.quotes.map((quote, index) => {
@@ -68,7 +86,10 @@ class Quotes extends Component{
                     </ul>
                     
                 </div>
-                <div className='quotes__content'>
+                <div id='quotes__content' className='quotes__content'>
+                    <a onClick={this.openQuoteList}>
+                        <FontAwesomeIcon className='quotes__content__arrow'  icon={ {prefix: 'fa', iconName: 'arrow-right'} } />
+                    </a>
                     <div className='quotes__content__error'>
                         {this.state.errorMessage}
                     </div>
