@@ -20,6 +20,7 @@ class Quotes extends Component{
         }
 
         this.selectQuote = this.selectQuote.bind(this);
+        this.deleteQuote = this.deleteQuote.bind(this);
     }
     componentDidMount() {
         if (this.props.userLogged.userType) {
@@ -55,6 +56,7 @@ class Quotes extends Component{
         }
     }
 
+    
     selectQuote(e) {
         this.setState({quote: this.state.quotes[e.target.value]});
     }
@@ -68,6 +70,26 @@ class Quotes extends Component{
         }
         
     }
+    deleteQuote(id) {
+        axios.delete(`http://127.0.0.1:5000/quotes/${id}`,
+                ).then(response =>{       
+                    let arrQuotes = [];
+                    this.state.quotes.map(quote  => {                        
+                        (quote.quotes_id != id)?
+                            arrQuotes.push(quote)
+                        :'';
+                    });
+
+                    this.setState({
+                        quotes: arrQuotes
+                    });      
+                }).catch(error => {
+                    this.setState({
+                        errorMessage: "An error occured"
+                    });
+                });          
+    }
+
     render() {
         const { userLogged } = this.props
         return (
@@ -75,7 +97,7 @@ class Quotes extends Component{
 
                 <div id='quotes__sidebar' className='quotes__sidebar'>
                     <a onClick={this.openQuoteList}>
-                        <FontAwesomeIcon className='navbar__option'  icon={ {prefix: 'fa', iconName: 'arrow-left'} } />
+                        <FontAwesomeIcon className='quotes__sidebar__arrow'  icon={ {prefix: 'fa', iconName: 'arrow-left'} } />
                     </a>
                     <ul className='quotes__sidebar__list'>
                         {(this.state.quotes)?
@@ -105,6 +127,7 @@ class Quotes extends Component{
                         (this.state.quote)?
                             <QuotesForm className='quotes__form'
                             userLogged={userLogged}
+                            deleteQuote={this.deleteQuote}
                             quotes_id={this.state.quote.quotes_id} quotes_date={this.state.quote.quotes_date} 
                             quotes_customer={this.state.quote.quotes_customer} quotes_email={this.state.quote.quotes_email} 
                             quotes_vehicleid={this.state.quote.quotes_vehicleid} 

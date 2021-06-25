@@ -150,6 +150,9 @@
 @media (max-width: 648px) {
     /*Mobile View */
     .navbar {
+        &__logo-side {
+            padding: 0 15px;
+        }
         &__options {
             display: flex;
             height: 350px;

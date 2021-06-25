@@ -1,41 +1,44 @@
 import React, { Component } from "react";
 import axios from 'axios';
 
+import DeleteModal from "../modals/deleteModal";
 
 class QuotesForm extends Component{
     constructor(props) {
         super(props);
 
         this.state = {
-           status: "",
-           errorColor: "",
-           errorMessage: "",
-           vehicles: '',
-           versions: '',
-           versionsVehicle: '',
-           colors: '',
-           colorsVehicle: '',
-           interiors: '',
-           interiorsVehicle: '',
-           rims: '',
-           rimsVehicle: '',
-           formQuoteId: '',
-           formStatus: '',
-           formCustomer: '',
-           formEmail: '',
-           formVehicleid: '',
-           formModelVehicle: '',
-           formVersionsId: '',
-           formVersionPrice: '',
-           formColorId: '',
-           formColorPrice: '',
-           formInteriorId: '',
-           formInteriorPrice: '',
-           formRimsId: '',
-           formRimsPrice: '',
-           formDiscount: '',
-           formDiscountPrice: '',
-           formTotal: ''
+            confirmDelete: false,
+            status: "",
+            errorColor: "",
+            errorMessage: "",
+            deleted: false,
+            vehicles: '',
+            versions: '',
+            versionsVehicle: '',
+            colors: '',
+            colorsVehicle: '',
+            interiors: '',
+            interiorsVehicle: '',
+            rims: '',
+            rimsVehicle: '',
+            formQuoteId: '',
+            formStatus: '',
+            formCustomer: '',
+            formEmail: '',
+            formVehicleid: '',
+            formModelVehicle: '',
+            formVersionsId: '',
+            formVersionPrice: '',
+            formColorId: '',
+            formColorPrice: '',
+            formInteriorId: '',
+            formInteriorPrice: '',
+            formRimsId: '',
+            formRimsPrice: '',
+            formDiscount: '',
+            formDiscountPrice: '',
+            formTotal: ''
 
         };
         this.onSubmit = this.onSubmit.bind(this);
@@ -50,6 +53,10 @@ class QuotesForm extends Component{
         this.handleOptionRims = this.handleOptionRims.bind(this);
         this.handleChangeConceptDiscount = this.handleChangeConceptDiscount.bind(this);
         this.handleChangeDiscountPrice = this.handleChangeDiscountPrice.bind(this);
+        this.openDeleteModal = this.openDeleteModal.bind(this);
+        this.closeDeleteModal = this.closeDeleteModal.bind(this);
+        this.deleteQuote = this.deleteQuote.bind(this);
+        this.deletedQuote = this.deletedQuote.bind(this);
     }
 
     componentDidMount() {
@@ -123,6 +130,8 @@ class QuotesForm extends Component{
         this.setState({
             errorMessage: "",
             errorColor: "FF0000",
+            confirmDelete: false,
+            deleted: false,
             formQuoteId: this.props.quotes_id, 
             formStatus: this.props.quotes_status,
             formCustomer: this.props.quotes_customer,
@@ -409,8 +418,32 @@ class QuotesForm extends Component{
         
         e.preventDefault();
     }
+    openDeleteModal() {
+        this.setState({
+            confirmDelete: true
+        });
+    }
+    closeDeleteModal() {
+        this.setState({
+            confirmDelete: false
+        });
+    }
+    deleteQuote(id) {
+        this.props.deleteQuote(id);
+    }
+    deletedQuote() {
+
+        this.setState({
+            confirmDelete: false,
+            errorMessage: "Dato eliminado",
+            deleted: true
+        });
+    }
     render() {
         const { className, userLogged, quotes_date } = this.props;
+        if (this.state.confirmDelete) {
+            return <DeleteModal quotes_id={this.props.quotes_id} deleteQuote={this.deleteQuote} deletedQuote={this.deletedQuote} closeDeleteModal={this.closeDeleteModal} message="Sure that you want delete?" direction='quotes' />
+        }
         return (
             <form onSubmit={this.onSubmit} name="form_quote" className={`${className}`}>
                 <div className={`${className}__principal`}>
@@ -594,16 +627,26 @@ class QuotesForm extends Component{
                     </div>
                 </div>
 
-                <div className={`${className}__buttons`}>
+                {
+                    (this.state.deleted == false)?
+                        <div className={`${className}__buttons`}>
                             
-                    <div className={`${className}__buttons__edit-wrapper`}>
-                        <a className={`${className}__buttons__edit`} onClick={this.handleEdit}>Edit</a>
-                    </div>
-
-                    <div className={`${className}__buttons__save-wrapper`}>
-                        <button id={`submitButton`} className={`${className}__buttons__save`} type="submit" disabled>Save</button>
-                    </div>
-                </div> 
+                            <div className={`${className}__buttons__edit-wrapper`}>
+                                <a className={`${className}__buttons__edit`} onClick={this.handleEdit}>Edit</a>
+                            </div>
+        
+                            <div className={`${className}__buttons__save-wrapper`}>
+                                <button id={`submitButton`} className={`${className}__buttons__save`} type="submit" disabled>Save</button>
+                            </div>
+                            {(userLogged.userType[0].usertype_name == 'Administrator')?
+                                <div className={`${className}__buttons__save-wrapper`}>
+                                    <a className={`${className}__buttons__delete`} onClick={this.openDeleteModal}>Delete</a>
+                                </div>
+                            :''}
+                        </div> 
+                    :''
+                }
+               
                 
 
             </form>

@@ -49,39 +49,113 @@
     }
 }
 
-.swal2-title {
-    font-size: 20px;
-}
-.swal2-confirm {
-    font-size: 20px!important;
-    background-color: #0fe0f5!important;
+.deleteModal {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    margin-top: 20px;
 
-    &:focus {
-        box-shadow: 0 0 0 3px rgba(15, 224, 245, 0.5)!important;
+    &__icon {
+        font-size: 40px;
+        color: #f8ba46;
     }
-
+    &__title {
+        font-size: 24px;
+    }
+    &__delete {
+        width: 100px;
+        box-shadow: 0px 0px 40px -5px rgba(0,0,0,0.75);
+        font-size: 24px;
+        font-weight: 600;
+        background-color: #f8ba46;
+        padding: 0;
+        border: none;
+        transition: all .3s;
+        &:hover {
+            background-color: #FFCB6A;
+            transform: scale(1.1);
+        }
+    }
+    &__notyet {
+        width: 100px;
+        box-shadow: 0px 0px 40px -5px rgba(0,0,0,0.75);
+        font-size: 24px;
+        font-weight: 600;
+        background-color: #0fe0f5;
+        padding: 0;
+        border: none;
+        transition: all .3s;
+        &:hover {
+            background-color: #3CE5F5;
+            transform: scale(1.1);
+        }
+    }
 }
-.swal2-modal {
-    width: 500px;
-    table {
-        margin-top: 10px;
-        width: 100%;
-        font-size: 18px;
+
+.deleteConfirmedModal {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    margin-top: 20px;
+
+    &__icon {
+        font-size: 40px;
+        color: #56BA03;
+        margin-bottom: 20px;
+    }
+    &__title {
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+    &__return {
+        width: 100px;
+        box-shadow: 0px 0px 40px -5px rgba(0,0,0,0.75);
+        font-size: 24px;
+        font-weight: 600;
+        background-color: #0fe0f5;
+        padding: 0;
+        border: none;
+        transition: all .3s;
+        &:hover {
+            background-color: #3CE5F5;
+            transform: scale(1.1);
+        }
     }
 }
 
-.modal-input {
-    text-align: right!important;
-    label{
-        font-size: 14px;
-    }
-    .swal2-input{
-        margin: 1em 0 0;
-        width: 100%;
-        font-size: 18px;
-    }
+// .swal2-title {
+//     font-size: 20px;
+// }
+// .swal2-confirm {
+//     font-size: 20px!important;
+//     background-color: #0fe0f5!important;
+
+//     &:focus {
+//         box-shadow: 0 0 0 3px rgba(15, 224, 245, 0.5)!important;
+//     }
+
+// }
+// .swal2-modal {
+//     width: 500px;
+//     table {
+//         margin-top: 10px;
+//         width: 100%;
+//         font-size: 18px;
+//     }
+// }
+
+// .modal-input {
+//     text-align: right!important;
+//     label{
+//         font-size: 14px;
+//     }
+//     .swal2-input{
+//         margin: 1em 0 0;
+//         width: 100%;
+//         font-size: 18px;
+//     }
     
-}
+// }
 .title-vehicle {
     margin: 10px 20px;
 }

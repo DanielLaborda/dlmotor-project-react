@@ -8,6 +8,12 @@
         overflow: scroll;
         overflow-x:hidden;
         font-size: 18px;
+        &__arrow {
+            cursor: pointer;
+            display: none;
+            font-size: 18px;
+            color: #464646;
+        }
 
         &__list__item {
             cursor: pointer;
@@ -26,6 +32,8 @@
         background-color: #282c30;
         color: #ccc;
         &__arrow {
+            cursor: pointer;
+            display: none;
             font-size: 18px;
             color: #ccc;
         }
@@ -162,6 +170,30 @@
                     
                 }
             }
+            &__delete {
+                width: 243px;
+                background-color: #B92727;
+                box-shadow: 0px 0px 40px -5px rgba(0,0,0,0.75);
+                font-size: 24px;
+                font-weight: 600;
+                text-transform: uppercase;
+                text-decoration: none;
+                border: none;
+                padding: 20px;
+                text-align: center;
+                margin-bottom: 20px;
+                color: #282c30;
+
+                &:hover {
+                    background-color: #970F0F;
+                }
+                &-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    
+                }
+            }
         }
     }
 }
@@ -238,6 +270,12 @@
 @media (max-width: 850px) {
     .quotes {
         grid-template-columns: 1fr;
+        &__sidebar__arrow {
+            display: block;
+        }
+        &__content__arrow {
+            display: block;
+        }
     }
     .quotes__sidebar {
         display: none;
