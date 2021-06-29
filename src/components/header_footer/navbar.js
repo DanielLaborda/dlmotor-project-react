@@ -21,7 +21,7 @@ class Navbar extends Component {
         this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
         this.showHideMenu = this.showHideMenu.bind(this);
     }
-    componentDidMount() {s
+    componentDidMount() {
         axios({
             method: 'get',
             url: 'https://apidlmotor.herokuapp.com/company/',
