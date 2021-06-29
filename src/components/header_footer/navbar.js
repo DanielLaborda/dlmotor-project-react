@@ -22,7 +22,7 @@ class Navbar extends Component {
         this.showHideMenu = this.showHideMenu.bind(this);
     }
     componentDidMount() {
-        axios.get("http://127.0.0.1:5000/company/1"
+        axios.get("https://apidlmotor.herokuapp.com/company/1"
         ).then(response =>{
            this.setState({
                 imageLogo: response.data.company_logo,
