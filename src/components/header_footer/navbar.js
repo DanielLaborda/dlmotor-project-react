@@ -21,13 +21,25 @@ class Navbar extends Component {
         this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
         this.showHideMenu = this.showHideMenu.bind(this);
     }
-    componentDidMount() {
-        axios.get("https://apidlmotor.herokuapp.com/company/1"
-        ).then(response =>{
-           this.setState({
-                imageLogo: response.data.company_logo,
-                nameCompany: response.data.company_name
-            });
+    componentDidMount() {s
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/company/',
+            params: {id: 1},
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Headers" : "Content-Type",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "PUT,POST,GET"
+            },
+            withCredential: true
+        }).then(response =>{
+            response.header("Access-Control-Allow-Origin", "*");
+            console.log(response)
+            this.setState({
+                    imageLogo: response.data.company_logo,
+                    nameCompany: response.data.company_name
+                });
         })
     }
 
