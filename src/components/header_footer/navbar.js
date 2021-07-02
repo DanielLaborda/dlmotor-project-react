@@ -25,22 +25,15 @@ class Navbar extends Component {
         axios({
             method: 'get',
             url: 'https://apidlmotor.herokuapp.com/company/',
-            params: {id: 1},
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Headers" : "Content-Type",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "PUT,POST,GET"
-            },
-            withCredential: true
+            params: {id: 1}
         }).then(response =>{
-            response.header("Access-Control-Allow-Origin", "*");
-            console.log(response)
             this.setState({
                     imageLogo: response.data.company_logo,
                     nameCompany: response.data.company_name
                 });
-        })
+        }).catch(error => {
+            console.log(error);
+        });
     }
 
     handleSuccessfulLogout() {
