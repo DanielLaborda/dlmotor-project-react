@@ -29,8 +29,10 @@ class Quotes extends Component{
             });
 
             if(this.props.userLogged.userType[0].usertype_name == "Administrator"){
-                axios.get(`http://127.0.0.1:5000/quotes`,
-                ).then(response =>{       
+                axios({
+                    method: 'get',
+                    url: 'https://apidlmotor.herokuapp.com/quotes/',
+                }).then(response =>{       
                     this.setState({
                         quotes: response.data,
                         errorMessage: response.data[0].response
@@ -40,9 +42,14 @@ class Quotes extends Component{
                         errorMessage: "An error occured"
                     });
                 });
-            } else {
-                axios.get(`http://127.0.0.1:5000/quotesByEmail/${this.props.userLogged.user_email}`,
-                ).then(response =>{       
+            } else {                
+                axios({
+                    method: 'get',
+                    url: 'https://apidlmotor.herokuapp.com/quotesByEmail/',
+                    params: {
+                      email: this.props.userLogged.user_email
+                    }
+                }).then(response =>{       
                     this.setState({
                         quotes: response.data,
                         errorMessage: response.data[0].response
@@ -71,23 +78,28 @@ class Quotes extends Component{
         
     }
     deleteQuote(id) {
-        axios.delete(`http://127.0.0.1:5000/quotes/${id}`,
-                ).then(response =>{       
-                    let arrQuotes = [];
-                    this.state.quotes.map(quote  => {                        
-                        (quote.quotes_id != id)?
-                            arrQuotes.push(quote)
-                        :'';
-                    });
+        axios({
+            method: 'delete',
+            url: 'https://apidlmotor.herokuapp.com/deleteQuote/',
+            params: {
+                id: id
+            }
+        }).then(response =>{       
+            let arrQuotes = [];
+            this.state.quotes.map(quote  => {                        
+                (quote.quotes_id != id)?
+                    arrQuotes.push(quote)
+                :'';
+            });
 
-                    this.setState({
-                        quotes: arrQuotes
-                    });      
-                }).catch(error => {
-                    this.setState({
-                        errorMessage: "An error occured"
-                    });
-                });          
+            this.setState({
+                quotes: arrQuotes
+            });      
+        }).catch(error => {
+            this.setState({
+                errorMessage: "An error occured"
+            });
+        });          
     }
 
     render() {

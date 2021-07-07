@@ -29,21 +29,18 @@ class RegisterForm extends Component {
     });
   }
   handleRegisterSubmit(event){
-    axios.post("http://127.0.0.1:5000/users",
-      {
+    axios.defaults.proxy = "http://apidlmotor.herokuapp.com"
+    axios({
+        method: 'post',
+        url: 'https://apidlmotor.herokuapp.com/createUsers/',
+        data: {
           users_name: this.state.user_name,
           users_surname: this.state.user_surname,
           users_email: this.state.user_email,
           users_password: this.state.user_password,
           users_type: this.props.typeUser
-      },{
-        headers: {
-          "Access-Control-Allow-Headers" : "Content-Type",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "PUT,POST,GET"
-        },
-      }
-    ).then(response => {
+        }
+    }).then(response => {
       if(response.data.response == "Accepted"){
         if(this.props.typeUser == 1){
           this.setState({

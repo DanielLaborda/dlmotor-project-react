@@ -24,8 +24,14 @@ class LoginForm extends Component {
   }
 
   handleLoginSubmit(event){
-    axios.get(`http://127.0.0.1:5000/userInfo/${this.state.email}/${this.state.password}`,
-    ).then(response =>{
+    axios({
+      method: 'get',
+      url: 'https://apidlmotor.herokuapp.com/userInfo/',
+      params: {
+        email: this.state.email,
+        password: this.state.password
+      }
+    }).then(response =>{
       
       if (response.data.response=='Accepted') {
         this.props.handleSuccessfulLogin(response.data);

@@ -60,14 +60,18 @@ class QuotesForm extends Component{
     }
 
     componentDidMount() {
-        axios.get("http://127.0.0.1:5000/vehicles"
-        ).then(response =>{
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/vehicles/'
+        }).then(response =>{
             this.setState({
                 vehicles: response.data
             });
-        });   
-        axios.get("http://127.0.0.1:5000/versions"
-        ).then(response =>{
+        }); 
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/versions/'
+        }).then(response =>{
             let versionsX = []
             response.data.map(version => {
                 (version.versionsvehicles_vehicleid == this.props.quotes_vehicleid)?
@@ -79,8 +83,10 @@ class QuotesForm extends Component{
                 versionsVehicle: versionsX
             });
         });   
-        axios.get("http://127.0.0.1:5000/colors"
-        ).then(response =>{
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/colors/'
+        }).then(response =>{
             let colorsX = []
             response.data.map(color => {
                 (color.colorsvehicles_vehicleid == this.props.quotes_vehicleid)?
@@ -92,8 +98,10 @@ class QuotesForm extends Component{
                 colorsVehicle: colorsX
             });
         });   
-        axios.get("http://127.0.0.1:5000/interiors"
-        ).then(response =>{
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/interiors/'
+        }).then(response =>{
             let interiorsX = []
             response.data.map(interior => {
                 (interior.interiorsvehicles_vehicleid == this.props.quotes_vehicleid)?
@@ -104,9 +112,11 @@ class QuotesForm extends Component{
                 interiors: response.data,
                 interiorsVehicle: interiorsX
             });
-        });   
-        axios.get("http://127.0.0.1:5000/rims"
-        ).then(response =>{
+        }); 
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/rims/'
+        }).then(response =>{
             
             let rimsX = []
             response.data.map(rim => {
@@ -119,8 +129,10 @@ class QuotesForm extends Component{
                 rimsVehicle: rimsX
             });
         });
-        axios.get("http://127.0.0.1:5000/quotesStatus"
-        ).then(response =>{
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/quotesStatus/'
+        }).then(response =>{
             this.setState({
                 status: response.data
             });
@@ -396,15 +408,15 @@ class QuotesForm extends Component{
                 "quotes_status": this.state.formStatus
             };
             
-            axios.put("http://127.0.0.1:5000/quotes/"+this.state.formQuoteId,data,
-                {
-                    headers: {
-                        "Access-Control-Allow-Headers" : "Content-Type",
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Methods": "PUT,POST,GET"
-                    },
-                }
-            ).then(response => {
+            axios({
+                method: 'put',
+                url: 'https://apidlmotor.herokuapp.com/updateQuote/',
+                params: {
+                    id: this.state.formQuoteId
+                },
+                data: data
+
+            }).then(response => {
                 this.setState({
                     errorMessage:"Saved successfully",
                     errorColor: "459800"

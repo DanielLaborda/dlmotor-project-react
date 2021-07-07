@@ -14,8 +14,13 @@ class Configuration extends Component {
 
     componentDidMount(){
         const id = this.props.match.params.id;
-        axios.get(`http://127.0.0.1:5000/vehiclesbyid/${id}`
-        ).then(response=> {
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/vehiclesbyid/',
+            params: {
+              id: id
+            }
+        }).then(response=> {
             this.setState({
                 vehicle:response.data
             });        

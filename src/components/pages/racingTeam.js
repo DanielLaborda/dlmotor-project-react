@@ -20,8 +20,13 @@ class RacingTeam extends Component {
         }
     }
     componentDidMount(){
-        axios.get("http://127.0.0.1:5000/racingTeam/1"
-        ).then(response =>{
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/racingTeam/',
+            params: {
+              id: 1
+            }
+        }).then(response =>{
            this.setState({
                 racingTeam_name: response.data.racingTeam_name,
                 racingTeam_slogan: response.data.racingTeam_slogan,
@@ -31,8 +36,13 @@ class RacingTeam extends Component {
                 racingTeam_imagesBanner: response.data.racingTeam_imagesBanner                
             });
         });
-        axios.get("http://127.0.0.1:5000/categoriesRacing"
-        ).then(response =>{   
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/categoriesRacing/',
+            params: {
+              id: 1
+            }
+        }).then(response =>{   
             this.setState({ 
                 racingTeam_categories: response.data
             });

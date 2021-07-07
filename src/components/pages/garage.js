@@ -14,8 +14,13 @@ class Garage extends Component{
         }
     }
     componentDidMount() {
-        axios.get("http://127.0.0.1:5000/garage/1"
-        ).then(response =>{
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/garage/',
+            params: {
+              id: 1
+            }
+        }).then(response =>{
            this.setState({
                 position: response.data.garage_position,
                 garage: response.data

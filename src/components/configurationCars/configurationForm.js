@@ -126,47 +126,42 @@ class ConfigurationForm extends Component{
                     return { nameCustomer: nameCustomer, emailCustomer: emailCustomer };
                   }
                 }).then((result) => {
-                    const data = {
-                        "quotes_customer": result.value.nameCustomer,
-                        "quotes_email": result.value.emailCustomer,
-                        "quotes_vehicleid": this.state.vehicles_id,
-                        "quotes_modelvehicle": this.state.vehicle,
-                        "quotes_version": this.state.version.versionsVehicles_id,
-                        "quotes_versionprice": this.state.version.versionsvehicles_baseprice,
-                        "quotes_color": this.state.colors.colors_id,
-                        "quotes_colorprice": this.state.colors.colors_id,
-                        "quotes_interior": this.state.interior.interior_id,
-                        "quotes_interiorprice": this.state.interior.interior_basePrice,
-                        "quotes_rims": this.state.rims.rims_id,
-                        "quotes_rimsprice": this.state.rims.rims_baseprice,
-                        "quotes_discount": "",
-                        "quotes_discountprice": 0,
-                        "quotes_total": total,
-                        "quotes_status": 1
-                    };
-                    if (result.isConfirmed) {
-                        axios.post("http://127.0.0.1:5000/quotes",data,
-                            {
-                                headers: {
-                                "Access-Control-Allow-Headers" : "Content-Type",
-                                "Access-Control-Allow-Origin": "*",
-                                "Access-Control-Allow-Methods": "PUT,POST,GET"
-                                },
+                    if (result.isConfirmed) {                           
+                        axios({
+                            method: 'post',
+                            url: 'https://apidlmotor.herokuapp.com/quotes/',
+                            data: {
+                                "quotes_customer": result.value.nameCustomer,
+                                "quotes_email": result.value.emailCustomer,
+                                "quotes_vehicleid": this.state.vehicles_id,
+                                "quotes_modelvehicle": this.state.vehicle,
+                                "quotes_version": this.state.version.versionsVehicles_id,
+                                "quotes_versionprice": this.state.version.versionsvehicles_baseprice,
+                                "quotes_color": this.state.colors.colors_id,
+                                "quotes_colorprice": this.state.colors.colors_id,
+                                "quotes_interior": this.state.interior.interior_id,
+                                "quotes_interiorprice": this.state.interior.interior_basePrice,
+                                "quotes_rims": this.state.rims.rims_id,
+                                "quotes_rimsprice": this.state.rims.rims_baseprice,
+                                "quotes_discount": "",
+                                "quotes_discountprice": 0,
+                                "quotes_total": total,
+                                "quotes_status": 1
                             }
-                            ).then(response => {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Great! ',
-                                    text: 'we will contact you as soon as possible!'
-                                });
-                            })
-                            .catch(error => {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Oops! ',
-                                    text: 'we will contact you as soon as possible!'
-                                });
+                        }).then(response => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Great! ',
+                                text: 'we will contact you as soon as possible!'
                             });
+                        })
+                        .catch(error => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops! ',
+                                text: 'Try again later!:('
+                            });
+                        });
                     }
                 });
 
@@ -207,34 +202,29 @@ class ConfigurationForm extends Component{
                            `,
                     confirmButtonText: 'Cool',
                     }).then((result) => {
-                        const data = {
-                            "quotes_customer": `${this.state.userLogged.user_name} ${this.state.userLogged.user_surname}`,
-                            "quotes_email": this.state.userLogged.user_email,
-                            "quotes_vehicleid": this.state.vehicles_id,
-                            "quotes_modelvehicle": this.state.vehicle,
-                            "quotes_version": this.state.version.versionsVehicles_id,
-                            "quotes_versionprice": this.state.version.versionsvehicles_baseprice,
-                            "quotes_color": this.state.colors.colors_id,
-                            "quotes_colorprice": this.state.colors.colors_id,
-                            "quotes_interior": this.state.interior.interior_id,
-                            "quotes_interiorprice": this.state.interior.interior_basePrice,
-                            "quotes_rims": this.state.rims.rims_id,
-                            "quotes_rimsprice": this.state.rims.rims_baseprice,
-                            "quotes_discount": "",
-                            "quotes_discountprice": 0,
-                            "quotes_total": total,
-                            "quotes_status": 1
-                        };
                         if (result.isConfirmed) {
-                            axios.post("http://127.0.0.1:5000/quotes",data,
-                            {
-                                headers: {
-                                "Access-Control-Allow-Headers" : "Content-Type",
-                                "Access-Control-Allow-Origin": "*",
-                                "Access-Control-Allow-Methods": "PUT,POST,GET"
-                                },
-                            }
-                            ).then(response => {
+                            axios({
+                                method: 'post',
+                                url: 'https://apidlmotor.herokuapp.com/quotes/',
+                                data: {
+                                    "quotes_customer": result.value.nameCustomer,
+                                    "quotes_email": result.value.emailCustomer,
+                                    "quotes_vehicleid": this.state.vehicles_id,
+                                    "quotes_modelvehicle": this.state.vehicle,
+                                    "quotes_version": this.state.version.versionsVehicles_id,
+                                    "quotes_versionprice": this.state.version.versionsvehicles_baseprice,
+                                    "quotes_color": this.state.colors.colors_id,
+                                    "quotes_colorprice": this.state.colors.colors_id,
+                                    "quotes_interior": this.state.interior.interior_id,
+                                    "quotes_interiorprice": this.state.interior.interior_basePrice,
+                                    "quotes_rims": this.state.rims.rims_id,
+                                    "quotes_rimsprice": this.state.rims.rims_baseprice,
+                                    "quotes_discount": "",
+                                    "quotes_discountprice": 0,
+                                    "quotes_total": total,
+                                    "quotes_status": 1
+                                }
+                            }).then(response => {
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Great! ',

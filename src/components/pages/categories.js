@@ -13,15 +13,19 @@ class Categories extends Component{
         }
     }
     componentDidMount() {
-        axios.get("http://127.0.0.1:5000/categories"
-        ).then(response => {
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/categories/'
+        }).then(response => {
            this.setState({
                 categories: response.data
             });
         });
 
-        axios.get("http://127.0.0.1:5000/vehicles"
-        ).then(response=> {
+        axios({
+            method: 'get',
+            url: 'https://apidlmotor.herokuapp.com/vehicles/'
+        }).then(response=> {
             this.setState({
                 vehicles:response.data
             })
