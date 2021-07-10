@@ -25,7 +25,12 @@
                 border-bottom: 2px solid #ccc;
             }
         }
-        
+        &__select {
+            border: none;
+            background-color: #A1A1A1;
+            font-size: 18px;
+            color: #282c30;
+        }
     }
     &__content {
         padding: 20px;

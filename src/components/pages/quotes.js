@@ -16,16 +16,31 @@ class Quotes extends Component{
            status: "",
            errorMessage: "",
            quotes: '',
+           quotesList: '',
+           quotesStatus: '',
            quote: ''
         }
 
         this.selectQuote = this.selectQuote.bind(this);
         this.deleteQuote = this.deleteQuote.bind(this);
+        this.listQuotes = this.listQuotes.bind(this);
     }
     componentDidMount() {
         if (this.props.userLogged.userType) {
             this.setState({
                 status: this.props.userLogged.userType[0].usertype_name
+            });
+            axios({
+                method: 'get',
+                url: 'https://apidlmotor.herokuapp.com/quotesStatus/'
+            }).then(response =>{       
+                this.setState({
+                    quotesStatus: response.data,
+                });
+            }).catch(error => {
+                this.setState({
+                    errorMessage: "An error occured"
+                });
             });
 
             if(this.props.userLogged.userType[0].usertype_name == "Administrator"){
@@ -34,6 +49,7 @@ class Quotes extends Component{
                     url: 'https://apidlmotor.herokuapp.com/quotes/',
                 }).then(response =>{       
                     this.setState({
+                        quotesList: response.data,
                         quotes: response.data,
                         errorMessage: response.data[0].response
                     });
@@ -66,6 +82,25 @@ class Quotes extends Component{
     
     selectQuote(e) {
         this.setState({quote: this.state.quotes[e.target.value]});
+    }
+    listQuotes(e) {
+        console.log("fdyuhtdt");
+        let arrQuotes = [];
+        if (e.target.value=="all"){
+            arrQuotes = this.state.quotes
+        } else {
+            this.state.quotes.map(quotes => {
+                (quotes.quotes_status == e.target.value)?
+                    arrQuotes.push(quotes)
+                :''
+            })
+        }
+
+       this.setState({
+        quotesList: arrQuotes
+       })
+        console.log(this.state.quotesList);
+        // console.log(e.target.value);
     }
     openQuoteList() {
         if (document.getElementById("quotes__sidebar").style.display == "none"){
@@ -111,9 +146,19 @@ class Quotes extends Component{
                     <a onClick={this.openQuoteList}>
                         <FontAwesomeIcon className='quotes__sidebar__arrow'  icon={ {prefix: 'fa', iconName: 'arrow-left'} } />
                     </a>
+                    <select className='quotes__sidebar__select' name="statusQuote" onChange={this.listQuotes}>
+                        <option value={'all'}>All</option>
+                            {
+                                (this.state.quotesStatus)?
+                                    this.state.quotesStatus.map(status => {
+                                        return <option key={status.quotesstatus_name} value={status.quotesstatus_id} >{status.quotesstatus_name}</option>
+                                    })
+                                :''
+                            }
+                    </select>
                     <ul className='quotes__sidebar__list'>
                         {(this.state.quotes)?
-                            this.state.quotes.map((quote, index) => {
+                            this.state.quotesList.map((quote, index) => {
                                 return <li onClick={this.selectQuote} value={index} className='quotes__sidebar__list__item' key={`quote${index}`}>{`${quote.quotes_date} - ${quote.quotes_modelvehicle}`}</li>
                             }) 
                         : ''}
