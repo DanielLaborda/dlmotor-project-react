@@ -84,7 +84,6 @@ class Quotes extends Component{
         this.setState({quote: this.state.quotes[e.target.value]});
     }
     listQuotes(e) {
-        console.log("fdyuhtdt");
         let arrQuotes = [];
         if (e.target.value=="all"){
             arrQuotes = this.state.quotes
@@ -93,14 +92,12 @@ class Quotes extends Component{
                 (quotes.quotes_status == e.target.value)?
                     arrQuotes.push(quotes)
                 :''
-            })
+            });
         }
 
        this.setState({
         quotesList: arrQuotes
-       })
-        console.log(this.state.quotesList);
-        // console.log(e.target.value);
+       });
     }
     openQuoteList() {
         if (document.getElementById("quotes__sidebar").style.display == "none"){
@@ -157,7 +154,7 @@ class Quotes extends Component{
                             }
                     </select>
                     <ul className='quotes__sidebar__list'>
-                        {(this.state.quotes)?
+                        {(this.state.quotesList)?
                             this.state.quotesList.map((quote, index) => {
                                 return <li onClick={this.selectQuote} value={index} className='quotes__sidebar__list__item' key={`quote${index}`}>{`${quote.quotes_date} - ${quote.quotes_modelvehicle}`}</li>
                             }) 
